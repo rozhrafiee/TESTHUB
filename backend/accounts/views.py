@@ -16,44 +16,45 @@ from .serializers import (
 )
 from .models import StudentProfile, TeacherProfile, ConsultantProfile
 
+
 @api_view(['POST'])
+@transaction.atomic
 def register(request):
-    # Step 1: Receive JSON from request
+    """
+    Expected payload (example):
+    {
+      "username": "alice",
+      "email": "a@example.com",
+      "password1": "Secret123!",
+      "password2": "Secret123!",
+      "user_type": "student",
+      "phone": "0912...",
+      "birth_date": "2000-01-01",
+      // profile fields (optional or required depending on your choice)
+      "field_of_study": "Computer Engineering",
+      "educational_level": "BSc"
+    }
+    """
     serializer = RegisterSerializer(data=request.data)
-    
-    # Step 2: Validate user fields
-    if not serializer.is_valid():
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    # Step 3: Save the user (password is set correctly in serializer)
+    serializer.is_valid(raise_exception=True)
     user = serializer.save()
-    
-    # Step 4: Prepare profile data container
+
+    profile_serializer_class = {
+        'student': StudentProfileSerializer,
+        'teacher': TeacherProfileSerializer,
+        'consultant': ConsultantProfileSerializer
+    }.get(user.user_type)
+
     profile_data = {}
-    
-    # Step 5: Create profile based on user_type
-    if user.user_type == 'student':
-        prof_serializer = StudentProfileSerializer(data=request.data)
-        if prof_serializer.is_valid():
-            profile = prof_serializer.save(user=user)
-            profile_data = StudentProfileSerializer(profile).data
+    if profile_serializer_class:
+        prof_serializer = profile_serializer_class(data=request.data)
+        # If profile validation fails it will raise and transaction will rollback
+        prof_serializer.is_valid(raise_exception=True)
+        profile = prof_serializer.save(user=user)
+        profile_data = profile_serializer_class(profile).data
 
-    elif user.user_type == 'teacher':
-        prof_serializer = TeacherProfileSerializer(data=request.data)
-        if prof_serializer.is_valid():
-            profile = prof_serializer.save(user=user)
-            profile_data = TeacherProfileSerializer(profile).data
-
-    elif user.user_type == 'consultant':
-        prof_serializer = ConsultantProfileSerializer(data=request.data)
-        if prof_serializer.is_valid():
-            profile = prof_serializer.save(user=user)
-            profile_data = ConsultantProfileSerializer(profile).data
-
-    # Step 6: Generate token
     token, _ = Token.objects.get_or_create(user=user)
 
-    # Step 7: Return final response
     return Response({
         "user": UserSerializer(user).data,
         "profile": profile_data,
@@ -74,29 +75,43 @@ def login_view(request):
         token, _ = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
-            'user_id': user.id,
-            'username': user.username
+            'user': UserSerializer(user).data
         })
     return Response({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET', 'PUT'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
+@transaction.atomic
 def profile(request):
     user = request.user
+    profile_serializer_class = {
+        'student': StudentProfileSerializer,
+        'teacher': TeacherProfileSerializer,
+        'consultant': ConsultantProfileSerializer
+    }.get(user.user_type)
+
     if request.method == 'GET':
         profile_data = {}
-        if hasattr(user, 'studentprofile'):
-            profile_data = StudentProfileSerializer(user.studentprofile).data
-        elif hasattr(user, 'teacherprofile'):
-            profile_data = TeacherProfileSerializer(user.teacherprofile).data
-        elif hasattr(user, 'consultantprofile'):
-            profile_data = ConsultantProfileSerializer(user.consultantprofile).data
+        if profile_serializer_class:
+            profile_instance = getattr(user, f"{user.user_type}profile", None)
+            if profile_instance:
+                profile_data = profile_serializer_class(profile_instance).data
         return Response({'user': UserSerializer(user).data, 'profile': profile_data})
 
-    # PUT - update basic user fields only (extend as needed)
-    serializer = UserSerializer(user, data=request.data, partial=True)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # PUT - update User and profile
+    user_serializer = UserSerializer(user, data=request.data, partial=True)
+    user_serializer.is_valid(raise_exception=True)
+    user_serializer.save()
+
+    profile_data = {}
+    if profile_serializer_class:
+        profile_instance = getattr(user, f"{user.user_type}profile", None)
+        if profile_instance:
+            profile_serializer = profile_serializer_class(profile_instance, data=request.data, partial=True)
+            profile_serializer.is_valid(raise_exception=True)
+            profile_serializer.save()
+            profile_data = profile_serializer.data
+
+    return Response({'user': user_serializer.data, 'profile': profile_data})

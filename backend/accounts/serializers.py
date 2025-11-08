@@ -20,6 +20,11 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"password2": "Passwords do not match."})
         return data
 
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Email is already in use.")
+        return value
+
     def create(self, validated_data):
         validated_data.pop('password2', None)
         password = validated_data.pop('password1')
@@ -28,27 +33,18 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-# Profile serializers with optional fields (won't force a 400)
-class StudentProfileSerializer(serializers.ModelSerializer):
-    field_of_study = serializers.CharField(required=False, allow_blank=True)
-    educational_level = serializers.CharField(required=False, allow_blank=True)
 
+class StudentProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProfile
         fields = ['field_of_study', 'educational_level']
 
 class TeacherProfileSerializer(serializers.ModelSerializer):
-    expertise = serializers.CharField(required=False, allow_blank=True)
-    bio = serializers.CharField(required=False, allow_blank=True)
-
     class Meta:
         model = TeacherProfile
         fields = ['expertise', 'bio']
 
 class ConsultantProfileSerializer(serializers.ModelSerializer):
-    specialization = serializers.CharField(required=False, allow_blank=True)
-    experience = serializers.IntegerField(required=False)
-
     class Meta:
         model = ConsultantProfile
         fields = ['specialization', 'experience']
