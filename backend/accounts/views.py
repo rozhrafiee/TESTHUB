@@ -47,11 +47,22 @@ def register(request):
 
     profile_data = {}
     if profile_serializer_class:
+        # Always create profile, even with empty values
         prof_serializer = profile_serializer_class(data=request.data)
-        # If profile validation fails it will raise and transaction will rollback
-        prof_serializer.is_valid(raise_exception=True)
-        profile = prof_serializer.save(user=user)
-        profile_data = profile_serializer_class(profile).data
+        if prof_serializer.is_valid():
+            try:
+                profile = prof_serializer.save(user=user)
+                profile_data = profile_serializer_class(profile).data
+            except Exception as e:
+                # If profile already exists, get it
+                profile_instance = getattr(user, f"{user.user_type}profile", None)
+                if profile_instance:
+                    profile_data = profile_serializer_class(profile_instance).data
+                # If profile creation fails for other reasons, user is still created
+                # Profile can be created/updated later via profile endpoint
+                import traceback
+                print(f"Profile creation error: {e}")
+                print(traceback.format_exc())
 
     token, _ = Token.objects.get_or_create(user=user)
 

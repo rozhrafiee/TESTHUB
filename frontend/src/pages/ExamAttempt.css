@@ -1,0 +1,124 @@
+.exam-attempt {
+  padding: 20px 0;
+}
+
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+}
+
+.timer {
+  font-size: 20px;
+  font-weight: bold;
+  color: #dc3545;
+}
+
+.question-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+}
+
+.question-nav-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.question-nav-btn:hover {
+  border-color: #007bff;
+}
+
+.question-nav-btn.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.question-nav-btn.answered {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.question-card {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.question-header {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.question-text {
+  font-size: 18px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.option-label:hover {
+  border-color: #007bff;
+  background: #f0f8ff;
+}
+
+.option-label input[type="radio"] {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+}
+
+.option-letter {
+  font-weight: bold;
+  margin-right: 10px;
+  width: 30px;
+  text-align: center;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.exam-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.exam-completed {
+  text-align: center;
+  padding: 60px 20px;
+}
+

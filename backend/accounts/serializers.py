@@ -38,13 +38,25 @@ class StudentProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProfile
         fields = ['field_of_study', 'educational_level']
+        extra_kwargs = {
+            'field_of_study': {'required': False, 'allow_blank': True},
+            'educational_level': {'required': False, 'allow_blank': True},
+        }
 
 class TeacherProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeacherProfile
         fields = ['expertise', 'bio']
+        extra_kwargs = {
+            'expertise': {'required': False, 'allow_blank': True},
+            'bio': {'required': False, 'allow_blank': True},
+        }
 
 class ConsultantProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = ConsultantProfile
         fields = ['specialization', 'experience']
+        extra_kwargs = {
+            'specialization': {'required': False, 'allow_blank': True},
+            'experience': {'required': False, 'allow_null': True},
+        }

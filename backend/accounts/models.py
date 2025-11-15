@@ -27,8 +27,8 @@ class User(AbstractUser):
 
 class StudentProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    field_of_study = models.CharField(max_length=100)
-    educational_level = models.CharField(max_length=50)
+    field_of_study = models.CharField(max_length=100, blank=True)
+    educational_level = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return f"{self.user.username} - Student"
@@ -36,7 +36,7 @@ class StudentProfile(models.Model):
 
 class TeacherProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    expertise = models.CharField(max_length=200)
+    expertise = models.CharField(max_length=200, blank=True)
     bio = models.TextField(blank=True)
 
     def __str__(self):
@@ -45,8 +45,8 @@ class TeacherProfile(models.Model):
 
 class ConsultantProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    specialization = models.CharField(max_length=200)
-    experience = models.IntegerField(help_text="Years of experience")
+    specialization = models.CharField(max_length=200, blank=True)
+    experience = models.IntegerField(help_text="Years of experience", null=True, blank=True)
 
     def __str__(self):
         return f"{self.user.username} - Consultant"

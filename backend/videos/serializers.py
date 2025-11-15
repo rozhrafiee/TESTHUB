@@ -6,4 +6,5 @@ class VideoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Video
-        fields = ['id', 'title', 'description', 'file', 'thumbnail', 'uploader', 'created_at']
+        fields = ['id', 'title', 'description', 'file', 'thumbnail', 'uploader', 'approved', 'created_at']
+        read_only_fields = ['approved']  # Only admin can change approval status

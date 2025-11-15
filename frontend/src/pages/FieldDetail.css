@@ -1,0 +1,47 @@
+.field-detail {
+  padding: 20px 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.field-detail h1 {
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.field-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.field-content section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.field-content section:last-child {
+  border-bottom: none;
+}
+
+.field-content h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.field-content p {
+  line-height: 1.8;
+  color: #666;
+}
+

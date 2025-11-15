@@ -1,0 +1,126 @@
+.consultation-detail {
+  padding: 20px 0;
+}
+
+.consultation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.consultation-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.schedules-section,
+.messages-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.schedules-section h2,
+.messages-section h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.schedule-form {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.schedules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.schedule-item {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  border-right: 4px solid #007bff;
+}
+
+.schedule-day {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.schedule-time {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.schedule-activity {
+  color: #333;
+}
+
+.messages-container {
+  height: 400px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: white;
+  border-radius: 5px;
+}
+
+.message.own {
+  background: #e3f2fd;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.message-time {
+  color: #666;
+  font-size: 12px;
+}
+
+.message-text {
+  color: #333;
+}
+
+.message-form {
+  display: flex;
+  gap: 10px;
+}
+
+.message-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .consultation-content {
+    grid-template-columns: 1fr;
+  }
+}
+

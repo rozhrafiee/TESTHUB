@@ -9,12 +9,14 @@ class Video(models.Model):
     - title, description: metadata for display.
     - file: uploaded video file (MP4 recommended).
     - thumbnail: optional image preview.
+    - approved: admin must approve before video appears in main panel.
     """
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='videos')
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     file = models.FileField(upload_to='videos/')  # actual video stored on disk
     thumbnail = models.ImageField(upload_to='thumbnails/', blank=True, null=True)
+    approved = models.BooleanField(default=False, help_text="Admin must approve before video appears")
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
