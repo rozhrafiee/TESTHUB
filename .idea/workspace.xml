@@ -1,7 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c9eac1e3-0e09-49ac-acbc-c15691edbd6c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/API_SUMMARY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/accounts/migrations/0002_alter_consultantprofile_experience_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/accounts/permissions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/consultations/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/exams/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/fields/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/forums/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/notes/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/videos/migrations/0002_video_approved.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Navbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Navbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/PrivateRoute.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/contexts/AuthContext.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/counter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Auth.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ConsultationDetail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ConsultationDetail.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Consultations.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Consultations.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ExamAttempt.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ExamAttempt.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ExamDetail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ExamDetail.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Exams.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Exams.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/FieldDetail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/FieldDetail.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Fields.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Fields.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Forum.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Forum.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Login.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Notes.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Notes.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Profile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Register.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Videos.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Videos.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/services/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/typescript.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/accounts/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/accounts/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/forums/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/forums/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/forums/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/forums/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/forums/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/forums/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/forums/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/forums/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/forums/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/forums/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/videos/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/videos/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/videos/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/videos/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/videos/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/videos/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/videos/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/videos/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="35WGS3zf9h6X9tgps9tF6hagKHq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c9eac1e3-0e09-49ac-acbc-c15691edbd6c" name="Changes" comment="" />
+      <created>1763218413666</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763218413666</updated>
+      <workItem from="1763218418462" duration="648000" />
+    </task>
+    <servers />
   </component>
 </project>
