@@ -7,6 +7,32 @@
   color: #2c3e50;
 }
 
+.upload-card {
+  margin-bottom: 30px;
+}
+
+.upload-form .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.upload-form input,
+.upload-form textarea,
+.upload-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.upload-hint {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
