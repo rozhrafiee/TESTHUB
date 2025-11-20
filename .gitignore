@@ -1,0 +1,57 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments and env files
+venv/
+.env
+.env.*
+
+# Django / SQLite
+*.sqlite3
+db.sqlite3
+backend/db.sqlite3
+
+# Media and uploads
+backend/media/
+media/
+
+# Static/build
+staticfiles/
+frontend/dist/
+
+# IDEs and editors
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+frontend/node_modules/
+# Optionally ignore package-lock.json if you don't want to track lockfile
+# package-lock.json
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Test / coverage / caches
+htmlcov/
+.coverage
+.cache
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+*.log
+
+# Compiled Python
+*.pyc
+
+# Misc
+*.sqlite
