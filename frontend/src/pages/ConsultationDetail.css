@@ -20,7 +20,7 @@
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .schedules-section h2,
@@ -124,3 +124,52 @@
   }
 }
 
+.btn-disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.message-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.consultation-status {
+  margin: 10px 0;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.status-badge.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.ended {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.consultation-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}

@@ -1,137 +1,200 @@
-import { useState, useEffect, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { consultationsAPI } from '../services/api'
-import { useAuth } from '../contexts/AuthContext'
-import './ConsultationDetail.css'
+import { useState, useEffect, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { consultationsAPI } from "../services/api";
+import { useAuth } from "../contexts/AuthContext";
+import "./ConsultationDetail.css";
 
 const ConsultationDetail = () => {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const [consultation, setConsultation] = useState(null)
-  const [schedules, setSchedules] = useState([])
-  const [messages, setMessages] = useState([])
-  const [newMessage, setNewMessage] = useState('')
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [consultation, setConsultation] = useState(null);
+  const [schedules, setSchedules] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
   const [newSchedule, setNewSchedule] = useState({
-    day: 'monday',
-    time: '',
-    activity: '',
-    week_start_date: '',
-  })
-  const [loading, setLoading] = useState(true)
-  const messagesEndRef = useRef(null)
-  const { isConsultant, isStudent } = useAuth()
+    day: "monday",
+    time: "",
+    activity: "",
+    week_start_date: "",
+  });
+  const [loading, setLoading] = useState(true);
+  const [canSendMessage, setCanSendMessage] = useState(false);
+  const messagesEndRef = useRef(null);
+  const { isConsultant, isStudent } = useAuth();
 
   useEffect(() => {
-    loadData()
+    loadData();
     const interval = setInterval(() => {
-      loadMessages()
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [id])
+      loadMessages();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [id]);
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
+    if (consultation) {
+      console.log("وضعیت مشاوره:", consultation.active ? "فعال" : "غیرفعال");
+      console.log("جزئیات مشاوره:", consultation);
+      setCanSendMessage(consultation.active);
+    }
+  }, [consultation]);
 
   const loadData = async () => {
-    await Promise.all([loadConsultation(), loadSchedules(), loadMessages()])
-    setLoading(false)
-  }
+    await Promise.all([loadConsultation(), loadSchedules(), loadMessages()]);
+    setLoading(false);
+  };
 
   const loadConsultation = async () => {
     try {
-      const response = await consultationsAPI.getMyConsultations()
-      const found = response.data.find((c) => c.id === parseInt(id))
-      setConsultation(found)
+      const response = await consultationsAPI.getMyConsultations();
+      const found = response.data.find((c) => c.id === parseInt(id));
+      console.log("Consultation active status:", found?.active);
+      setConsultation(found);
+
+      if (found && !found.active) {
+        console.log("مشاوره غیرفعال است، نمی‌توان پیام ارسال کرد");
+      }
     } catch (error) {
-      console.error('Error loading consultation:', error)
+      console.error("Error loading consultation:", error);
     }
-  }
+  };
 
   const loadSchedules = async () => {
     try {
-      const response = await consultationsAPI.getSchedules(id)
-      setSchedules(response.data)
+      const response = await consultationsAPI.getSchedules(id);
+      setSchedules(response.data);
     } catch (error) {
-      console.error('Error loading schedules:', error)
+      console.error("Error loading schedules:", error);
     }
-  }
+  };
 
   const loadMessages = async () => {
     try {
-      const response = await consultationsAPI.getMessages(id)
-      setMessages(response.data)
+      const response = await consultationsAPI.getMessages(id);
+      setMessages(response.data);
     } catch (error) {
-      console.error('Error loading messages:', error)
+      console.error("Error loading messages:", error);
     }
-  }
+  };
 
   const handleSendMessage = async (e) => {
-    e.preventDefault()
-    if (!newMessage.trim()) return
+    e.preventDefault();
+    if (!newMessage.trim() || !consultation?.active) return;
 
     try {
-      await consultationsAPI.sendMessage(id, newMessage)
-      setNewMessage('')
-      loadMessages()
+      await consultationsAPI.sendMessage(id, newMessage);
+      setNewMessage("");
+      loadMessages();
     } catch (error) {
-      alert(error.response?.data?.error || 'خطا در ارسال پیام')
+      console.error("Error sending message:", error);
+      alert(error.response?.data?.error || "خطا در ارسال پیام");
     }
-  }
+  };
 
   const handleCreateSchedule = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      await consultationsAPI.createSchedule(id, newSchedule)
+      await consultationsAPI.createSchedule(id, newSchedule);
       setNewSchedule({
-        day: 'monday',
-        time: '',
-        activity: '',
-        week_start_date: '',
-      })
-      loadSchedules()
+        day: "monday",
+        time: "",
+        activity: "",
+        week_start_date: "",
+      });
+      loadSchedules();
     } catch (error) {
-      alert(error.response?.data?.error || 'خطا در ایجاد برنامه')
+      alert(error.response?.data?.error || "خطا در ایجاد برنامه");
     }
-  }
+  };
+
+  const handleActivateConsultation = async () => {
+    if (
+      !window.confirm("آیا مطمئن هستید که می‌خواهید این مشاوره را فعال کنید؟")
+    )
+      return;
+
+    try {
+      // روش اول: اگر API فعال‌سازی داری
+      await consultationsAPI.activateConsultation(id);
+
+      // روش دوم: اگر API فعال‌سازی نداری، از آپدیت استفاده کن
+      // await consultationsAPI.updateConsultation(id, { active: true })
+
+      alert("مشاوره با موفقیت فعال شد");
+      loadConsultation(); // دوباره بارگذاری کن تا وضعیت آپدیت بشه
+    } catch (error) {
+      console.error("Activation error:", error);
+
+      // اگر API فعال‌سازی وجود نداره، این خط رو امتحان کن:
+      try {
+        await consultationsAPI.updateConsultation(id, { active: true });
+        alert("مشاوره فعال شد");
+        loadConsultation();
+      } catch (updateError) {
+        alert("خطا در فعال‌سازی مشاوره. لطفاً با پشتیبانی تماس بگیرید.");
+      }
+    }
+  };
 
   const handleEndConsultation = async () => {
-    if (!window.confirm('آیا مطمئن هستید که می‌خواهید این مشاوره را پایان دهید؟')) return
+    if (
+      !window.confirm("آیا مطمئن هستید که می‌خواهید این مشاوره را پایان دهید؟")
+    )
+      return;
 
     try {
-      await consultationsAPI.endConsultation(id)
-      navigate('/consultations')
+      await consultationsAPI.endConsultation(id);
+      navigate("/consultations");
     } catch (error) {
-      alert(error.response?.data?.error || 'خطا در پایان مشاوره')
+      alert(error.response?.data?.error || "خطا در پایان مشاوره");
     }
-  }
+  };
 
   if (loading) {
-    return <div className="loading">در حال بارگذاری...</div>
+    return <div className="loading">در حال بارگذاری...</div>;
   }
 
   if (!consultation) {
-    return <div className="error">مشاوره یافت نشد</div>
+    return <div className="error">مشاوره یافت نشد</div>;
   }
 
   return (
     <div className="consultation-detail">
       <div className="consultation-header">
         <h1>
-          مشاوره با{' '}
+          مشاوره با{" "}
           {isStudent
             ? consultation.consultant.username
             : consultation.student.username}
         </h1>
-        {isStudent && (
-          <button onClick={handleEndConsultation} className="btn btn-danger">
-            پایان مشاوره
-          </button>
-        )}
+
+        {/* نمایش وضعیت مشاوره */}
+        <div className="consultation-status">
+          <span
+            className={`status-badge ${
+              consultation.active ? "active" : "inactive"
+            }`}
+          >
+            وضعیت: {consultation.active ? "فعال" : "غیرفعال"}
+          </span>
+        </div>
+
+        {/* دکمه‌های مختلف بر اساس وضعیت */}
+        <div className="consultation-actions">
+          {isConsultant && !consultation.active && (
+            <button
+              onClick={handleActivateConsultation}
+              className="btn btn-success"
+            >
+              فعال‌سازی مشاوره
+            </button>
+          )}
+
+          {isStudent && consultation.active && (
+            <button onClick={handleEndConsultation} className="btn btn-danger">
+              پایان مشاوره
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="consultation-content">
@@ -175,7 +238,10 @@ const ConsultationDetail = () => {
                     type="date"
                     value={newSchedule.week_start_date}
                     onChange={(e) =>
-                      setNewSchedule({ ...newSchedule, week_start_date: e.target.value })
+                      setNewSchedule({
+                        ...newSchedule,
+                        week_start_date: e.target.value,
+                      })
                     }
                     required
                   />
@@ -217,12 +283,19 @@ const ConsultationDetail = () => {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`message ${message.sender.id === (isStudent ? consultation.student.id : consultation.consultant.id) ? 'own' : ''}`}
+                className={`message ${
+                  message.sender.id ===
+                  (isStudent
+                    ? consultation.student.id
+                    : consultation.consultant.id)
+                    ? "own"
+                    : ""
+                }`}
               >
                 <div className="message-header">
                   <strong>{message.sender.username}</strong>
                   <span className="message-time">
-                    {new Date(message.created_at).toLocaleString('fa-IR')}
+                    {new Date(message.created_at).toLocaleString("fa-IR")}
                   </span>
                 </div>
                 <div className="message-text">{message.message}</div>
@@ -235,18 +308,28 @@ const ConsultationDetail = () => {
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              placeholder="پیام خود را بنویسید..."
+              placeholder={
+                consultation.active
+                  ? "پیام خود را بنویسید..."
+                  : "مشاوره فعال نیست"
+              }
+              disabled={!consultation.active}
               className="message-input"
             />
-            <button type="submit" className="btn btn-primary">
-              ارسال
+            <button
+              type="submit"
+              disabled={!consultation.active}
+              className={`btn ${
+                consultation.active ? "btn-primary" : "btn-disabled"
+              }`}
+            >
+              {consultation.active ? "ارسال" : "غیرفعال"}
             </button>
           </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ConsultationDetail
-
+export default ConsultationDetail;
