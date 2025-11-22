@@ -9,8 +9,8 @@
 .auth-card {
   background: white;
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   width: 100%;
   max-width: 500px;
 }
@@ -18,21 +18,22 @@
 .auth-card h2 {
   margin-bottom: 30px;
   text-align: center;
-  color: #2c3e50;
+  color: #1A1B2E; 
+  font-weight: 700;
 }
 
 .auth-link {
   text-align: center;
   margin-top: 20px;
-  color: #666;
+  color: #555;
 }
 
 .auth-link a {
-  color: #007bff;
+  color: #5B6CFF; 
   text-decoration: none;
+  font-weight: 500;
 }
 
 .auth-link a:hover {
   text-decoration: underline;
 }
-

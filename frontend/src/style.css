@@ -18,11 +18,9 @@
   font-family: "BYekan", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: #ffffff;
+  background-color: #1A1B2E;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -31,11 +29,12 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #5B6CFF;
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+  color: #7A5CFF;
 }
 
 body {
@@ -45,6 +44,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: "BYekan", sans-serif;
+  background-color: #1A1B2E;
+  color: #E5E7F1;
 }
 
 h1 {
@@ -66,19 +67,25 @@ h1 {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #5B6CFFaa);
 }
+
 .logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+  filter: drop-shadow(0 0 2em #7A5CFFaa);
 }
 
 .card {
   padding: 2em;
+  background-color: #242438;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(91,108,255,0.15);
+  color: #E5E7F1;
 }
 
 .read-the-docs {
-  color: #888;
+  color: #D5D8EE;
 }
 
 button {
@@ -88,16 +95,20 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: "BYekan";
-  background-color: #1a1a1a;
+  background-color: #3b427f;
+  color: #ffffff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: #5B6CFF;
+  border-color: #7A5CFF;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto #5B6CFF;
 }
 
 strong,
@@ -111,9 +122,20 @@ b {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #7A5CFF;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #5B6CFF;
+    color: white;
+  }
+  button:hover {
+    background-color: #7A5CFF;
+  }
+  .card {
+    background-color: #ffffff;
+    color: #333;
+  }
+  .read-the-docs {
+    color: #555;
   }
 }

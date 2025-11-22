@@ -1,8 +1,8 @@
-/* Fields.css */
 .fields-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-color: #F4F6FF; 
 }
 
 .fields-header {
@@ -12,12 +12,12 @@
 
 .fields-header h1 {
   font-size: 2rem;
-  color: #333;
+  color: #1A1B2E; 
   margin-bottom: 10px;
 }
 
 .fields-header p {
-  color: #666;
+  color: #5A5C6E; 
 }
 
 .fields-grid {
@@ -31,36 +31,38 @@
   border-radius: 10px;
   padding: 25px;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid #eee;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5E7F1; 
   transition: all 0.3s;
   cursor: pointer;
 }
 
 .field-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-color: #5B6CFF;
 }
 
 .field-icon {
   font-size: 3rem;
   margin-bottom: 15px;
+  color: #5B6CFF;
 }
 
 .field-card h3 {
   font-size: 1.3rem;
-  color: #333;
+  color: #1A1B2E;
   margin-bottom: 10px;
 }
 
 .field-card p {
-  color: #666;
+  color: #5A5C6E; 
   line-height: 1.5;
   margin-bottom: 20px;
 }
 
 .field-btn {
-  background: #667eea;
+  background: #5B6CFF; 
   color: white;
   border: none;
   padding: 10px 20px;
@@ -71,10 +73,9 @@
 }
 
 .field-btn:hover {
-  background: #5a6fd8;
+  background: #7A5CFF; 
 }
 
-/* Modal Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -97,7 +98,7 @@
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .modal-header {
@@ -105,12 +106,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #E5E7F1;
 }
 
 .modal-header h2 {
   margin: 0;
-  color: #333;
+  color: #1A1B2E;
 }
 
 .close-btn {
@@ -118,7 +119,7 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #999;
+  color: #5A5C6E; 
   padding: 0;
   width: 30px;
   height: 30px;
@@ -128,7 +129,7 @@
 }
 
 .close-btn:hover {
-  color: #333;
+  color: #1A1B2E; 
 }
 
 .modal-body {
@@ -139,24 +140,25 @@
   font-size: 4rem;
   text-align: center;
   margin-bottom: 20px;
+  color: #5B6CFF; 
 }
 
 .modal-body p {
-  color: #666;
+  color: #5A5C6E; 
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
 .modal-info {
-  background: #f8f9fa;
-  padding: 15px;
+  background: #F4F6FF; 
   border-radius: 8px;
   margin-top: 20px;
+  border: 1px solid #E5E7F1;
 }
 
 .info-item {
   margin-bottom: 8px;
-  color: #555;
+  color: #1A1B2E;
 }
 
 .info-item:last-child {
@@ -165,12 +167,12 @@
 
 .modal-footer {
   padding: 20px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #E5E7F1;
   text-align: center;
 }
 
 .btn-primary {
-  background: #667eea;
+  background: #5B6CFF;
   color: white;
   border: none;
   padding: 12px 30px;
@@ -181,13 +183,14 @@
 }
 
 .btn-primary:hover {
-  background: #5a6fd8;
+  background: #7A5CFF; 
 }
 
 .loading {
   text-align: center;
   padding: 50px;
   font-size: 1.2rem;
+  color: #5A5C6E;
 }
 
 @media (max-width: 768px) {

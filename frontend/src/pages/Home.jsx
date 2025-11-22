@@ -12,8 +12,8 @@ const Home = () => {
         <p>پلتفرم جامع برای آمادگی کنکور</p>
         {!isAuthenticated && (
           <div className="hero-buttons">
-            <Link to="/register" className="btn btn-primary">ثبت نام</Link>
-            <Link to="/login" className="btn btn-secondary">ورود</Link>
+            <Link to="/register" className="btn-small btn-small-primary">ثبت نام</Link>
+            <Link to="/login" className="btn-small btn-small-primary">ورود</Link>
           </div>
         )}
       </div>

@@ -20,19 +20,19 @@
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .schedules-section h2,
 .messages-section h2 {
   margin-bottom: 20px;
-  color: #2c3e50;
+  color: #1A1B2E; 
 }
 
 .schedule-form {
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #E5E7F1;
 }
 
 .form-row {
@@ -50,14 +50,15 @@
 
 .schedule-item {
   padding: 15px;
-  background: #f8f9fa;
-  border-radius: 5px;
-  border-right: 4px solid #007bff;
+  background: #F7F8FF;
+  border-radius: 6px;
+  border-right: 4px solid #5B6CFF; 
 }
 
 .schedule-day {
   font-weight: bold;
   margin-bottom: 5px;
+  color: #1A1B2E;
 }
 
 .schedule-time {
@@ -70,24 +71,27 @@
   color: #333;
 }
 
+/* Messages */
 .messages-container {
   height: 400px;
   overflow-y: auto;
   margin-bottom: 15px;
   padding: 15px;
-  background: #f8f9fa;
-  border-radius: 5px;
+  background: #F7F8FF;
+  border-radius: 6px;
 }
 
 .message {
   margin-bottom: 15px;
   padding: 10px;
   background: white;
-  border-radius: 5px;
+  border-radius: 6px;
+  border-left: 3px solid #E5E7F1;
 }
 
 .message.own {
-  background: #e3f2fd;
+  background: #EAF0FF;
+  border-left-color: #5B6CFF;
 }
 
 .message-header {
@@ -114,8 +118,8 @@
 .message-input {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #D5D8EE;
+  border-radius: 6px;
 }
 
 @media (max-width: 768px) {
@@ -134,6 +138,7 @@
   cursor: not-allowed;
 }
 
+/* Status Badges */
 .consultation-status {
   margin: 10px 0;
 }
@@ -159,6 +164,7 @@
   color: #721c24;
 }
 
+/* Buttons */
 .consultation-actions {
   display: flex;
   gap: 10px;
@@ -166,10 +172,10 @@
 }
 
 .btn-success {
-  background-color: #28a745;
+  background-color: #5B6CFF; 
   color: white;
 }
 
 .btn-success:hover {
-  background-color: #218838;
+  background-color: #7A5CFF; 
 }

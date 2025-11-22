@@ -23,12 +23,16 @@
 
 body {
   font-family: "BYekan", sans-serif;
-  background-color: #f5f5f5;
+  background-color: #E5E7F1;
+  color: #333;
 }
 
 code {
   font-family: "BYekan", monospace;
-  background-color: #f5f5f5;
+  background-color: #D5D8EE;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #555;
 }
 
 .container {
@@ -40,59 +44,59 @@ code {
 .btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  transition: all 0.3s;
   font-family: "BYekan", sans-serif;
+  font-weight: bold;
+  transition: all 0.3s;
 }
 
 .btn-primary {
-  background-color: #007bff;
+  background-color: #3b427f;
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #5B6CFF;
 }
 
 .btn-secondary {
-  background-color: #6c757d;
+  background-color: #23024e;
   color: white;
 }
 
 .btn-secondary:hover {
-  background-color: #545b62;
+  background-color: #7A5CFF;
 }
 
 .btn-success {
-  background-color: #28a745;
+  background-color: #3ECF8E;
   color: white;
 }
 
 .btn-success:hover {
-  background-color: #218838;
+  background-color: #34b77a;
 }
 
 .btn-danger {
-  background-color: #dc3545;
+  background-color: #FF5B5B;
   color: white;
 }
 
 .btn-danger:hover {
-  background-color: #c82333;
+  background-color: #e74c5b;
 }
 
 .form-group {
   margin-bottom: 15px;
-  font-family: "BYekan", sans-serif;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
-  font-family: "BYekan", sans-serif;
+  color: #333;
 }
 
 .form-group input,
@@ -100,10 +104,22 @@ code {
 .form-group select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 2px solid #D5D8EE;
+  border-radius: 6px;
   font-size: 16px;
   font-family: "BYekan", sans-serif;
+  background: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #5B6CFF;
+  box-shadow: 0 0 0 3px rgba(91,108,255,0.15);
+  background: #fafafa;
 }
 
 .form-group textarea {
@@ -112,40 +128,47 @@ code {
 }
 
 .card {
-  background: white;
-  border-radius: 8px;
+  background: #ffffff;
+  border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: "BYekan", sans-serif;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid #D5D8EE;
+  color: #333;
 }
 
 .error {
-  color: #dc3545;
+  color: #FF5B5B;
   margin-top: 5px;
   font-size: 14px;
-  font-family: "BYekan", sans-serif;
+  background: #ffe5e5;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border-right: 3px solid #FF5B5B;
 }
 
 .success {
-  color: #28a745;
+  color: #3ECF8E;
   margin-top: 5px;
   font-size: 14px;
-  font-family: "BYekan", sans-serif;
+  background: #e5f9ef;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border-right: 3px solid #3ECF8E;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-div,
-a,
-li,
-td,
-th {
+h1,h2,h3,h4,h5,h6,p,span,div,a,li,td,th {
   font-family: "BYekan", sans-serif;
+  color: #333;
+}
+
+a {
+  color: #5B6CFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #3b427f;
+  text-decoration: underline;
 }

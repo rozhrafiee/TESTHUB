@@ -23,7 +23,7 @@
 }
 
 .tab-button.active {
-  background: #007bff;
+  background: #5B6CFF;
   color: white;
 }
 
@@ -86,7 +86,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #5B6CFF;
 }
 
 .form-group textarea {
@@ -129,6 +129,17 @@
   padding: 15px 30px;
   font-size: 16px;
   font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #3b427f;
+  color: white;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.upload-btn:hover {
+  background: #5B6CFF;
+  transform: translateY(-2px);
 }
 
 .notes-section h2 {
@@ -153,7 +164,7 @@
 
 .note-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(91,108,255,0.15);
 }
 
 .note-header {
@@ -237,21 +248,21 @@
 }
 
 .btn-primary {
-  background: #007bff;
+  background: #3b427f;
   color: white;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #0056b3;
+  background: #5B6CFF;
 }
 
 .btn-success {
-  background: #28a745;
+  background: #7A5CFF;
   color: white;
 }
 
 .btn-success:hover {
-  background: #218838;
+  background: #5B6CFF;
 }
 
 .btn-outline {
@@ -269,28 +280,6 @@
   background: #ccc;
   cursor: not-allowed;
   opacity: 0.6;
-}
-
-.no-notes {
-  text-align: center;
-  padding: 60px 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  grid-column: 1 / -1;
-}
-
-.no-notes p {
-  font-size: 18px;
-  color: #666;
-  margin: 0;
-}
-
-.loading {
-  text-align: center;
-  padding: 60px 20px;
-  font-size: 18px;
-  color: #007bff;
 }
 
 .message {
@@ -311,7 +300,28 @@
   border: 1px solid #c3e6cb;
 }
 
-/* رسپانسیو */
+.no-notes {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  grid-column: 1 / -1;
+}
+
+.no-notes p,
+.loading {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #5B6CFF;
+}
+
 @media (max-width: 768px) {
   .notes-page {
     padding: 15px;
