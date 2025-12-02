@@ -1,12 +1,17 @@
 from django.db import models
 from django.conf import settings
+import os
+
+def note_upload_path(instance, filename):
+    """Generate file path for new note files"""
+    return os.path.join('notes', str(instance.uploader.id), filename)
 
 class Note(models.Model):
     """PDF notes shared by students and teachers"""
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='notes')
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    file = models.FileField(upload_to='notes/')
+    file = models.FileField(upload_to=note_upload_path)
     field = models.CharField(max_length=100, blank=True, help_text="Field of study (optional)")
     approved = models.BooleanField(default=False, help_text="Admin must approve before note appears")
     is_paid = models.BooleanField(default=False, help_text="Is this a paid note? (Teachers only)")
