@@ -9,34 +9,34 @@ const Exams = () => {
   const [loading, setLoading] = useState(true);
   const [level, setLevel] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const { isAuthenticated, isStudent, isTeacher } = useAuth(); // تغییر به isTeacher
+  const { user } = useAuth();
 
-  // حالت‌های مربوط به ساخت آزمون
   const [newExam, setNewExam] = useState({
     title: "",
     description: "",
-    field: "computer",
-    duration_minutes: 120,
-    required_level: "beginner",
+    field: "Computer Science",
+    duration_minutes: 60,
+    required_level: 1,
+    questions: [
+      {
+        text: "",
+        option_a: "",
+        option_b: "",
+        option_c: "",
+        option_d: "",
+        correct_answer: "A",
+        points: 1,
+        order: 1,
+      },
+    ],
   });
-
-  const [questions, setQuestions] = useState([
-    {
-      text: "",
-      option_a: "",
-      option_b: "",
-      option_c: "",
-      option_d: "",
-      correct_answer: "A",
-    },
-  ]);
 
   useEffect(() => {
     loadExams();
-    if (isAuthenticated && isStudent) {
+    if (user?.user_type === "student") {
       loadLevel();
     }
-  }, [isAuthenticated, isStudent]);
+  }, [user]);
 
   const loadExams = async () => {
     try {
@@ -58,77 +58,65 @@ const Exams = () => {
     }
   };
 
-  // این رو جایگزین تابع handleCreateExam کن
   const handleCreateExam = async () => {
-    if (!newExam.title.trim()) {
-      alert("عنوان آزمون الزامی است");
-      return;
+    try {
+      const response = await examsAPI.createExam(newExam);
+      setExams([response.data, ...exams]);
+      setShowCreateForm(false);
+      setNewExam({
+        title: "",
+        description: "",
+        field: "Computer Science",
+        duration_minutes: 60,
+        required_level: 1,
+        questions: [
+          {
+            text: "",
+            option_a: "",
+            option_b: "",
+            option_c: "",
+            option_d: "",
+            correct_answer: "A",
+            points: 1,
+            order: 1,
+          },
+        ],
+      });
+    } catch (error) {
+      console.error("Error creating exam:", error);
     }
-
-    // ایجاد آزمون تستی با ID واقعی
-    const mockExam = {
-      id: Math.floor(Math.random() * 1000) + 1, // ID تصادفی بین ۱-۱۰۰۰
-      title: newExam.title,
-      description: newExam.description,
-      field: newExam.field,
-      duration_minutes: newExam.duration_minutes,
-      required_level: newExam.required_level,
-      question_count: questions.length,
-      creator: { username: "شما" },
-      questions: questions, // سوالات رو هم ذخیره کن
-    };
-
-    // اضافه کردن به لیست
-    setExams((prev) => [mockExam, ...prev]);
-
-    alert(`آزمون "${newExam.title}" ایجاد شد`);
-
-    // پاک کردن فرم
-    setShowCreateForm(false);
-    setNewExam({
-      title: "",
-      description: "",
-      field: "computer",
-      duration_minutes: 120,
-      required_level: "beginner",
-    });
-    setQuestions([
-      {
-        text: "",
-        option_a: "",
-        option_b: "",
-        option_c: "",
-        option_d: "",
-        correct_answer: "A",
-      },
-    ]);
   };
 
   const addQuestion = () => {
-    setQuestions([
-      ...questions,
-      {
-        text: "",
-        option_a: "",
-        option_b: "",
-        option_c: "",
-        option_d: "",
-        correct_answer: "A",
-      },
-    ]);
+    setNewExam({
+      ...newExam,
+      questions: [
+        ...newExam.questions,
+        {
+          text: "",
+          option_a: "",
+          option_b: "",
+          option_c: "",
+          option_d: "",
+          correct_answer: "A",
+          points: 1,
+          order: newExam.questions.length + 1,
+        },
+      ],
+    });
   };
 
   const removeQuestion = (index) => {
-    if (questions.length > 1) {
-      const newQuestions = questions.filter((_, i) => i !== index);
-      setQuestions(newQuestions);
+    if (newExam.questions.length > 1) {
+      const newQuestions = newExam.questions.filter((_, i) => i !== index);
+      setNewExam({ ...newExam, questions: newQuestions });
     }
   };
 
   const handleQuestionChange = (index, field, value) => {
-    const newQuestions = [...questions];
+    const newQuestions = [...newExam.questions];
     newQuestions[index][field] = value;
-    setQuestions(newQuestions);
+    setNewExam({ ...newExam, questions: newQuestions });
   };
 
   if (loading) {
@@ -138,201 +126,191 @@ const Exams = () => {
   return (
     <div className="exams-page">
       <div className="exams-header">
-        <h1>آزمون‌های آزمایشی</h1>
+        <h1>آزمون‌ها</h1>
 
-        {isTeacher && ( // تغییر به isTeacher
+        {user?.user_type === "teacher" && (
           <button
             onClick={() => setShowCreateForm(!showCreateForm)}
             className="btn btn-success"
           >
-            {showCreateForm ? "انصراف" : "طراحی آزمون جدید"}
+            {showCreateForm ? "انصراف" : "ایجاد آزمون جدید"}
           </button>
         )}
       </div>
 
-      {isAuthenticated && isStudent && level !== null && (
+      {user?.user_type === "student" && level !== null && (
         <div className="level-badge">سطح شما: {level}</div>
       )}
 
-      {/* فرم ساخت آزمون برای اساتید */}
-      {showCreateForm &&
-        isTeacher && ( // تغییر به isTeacher
-          <div className="create-exam-form">
-            <h2>طراحی آزمون جدید</h2>
+      {showCreateForm && user?.user_type === "teacher" && (
+        <div className="create-exam-form">
+          <h2>ایجاد آزمون جدید</h2>
 
+          <div className="form-group">
+            <label>عنوان *</label>
+            <input
+              type="text"
+              value={newExam.title}
+              onChange={(e) =>
+                setNewExam({ ...newExam, title: e.target.value })
+              }
+              placeholder="مثال: مبانی علوم کامپیوتر"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>توضیحات</label>
+            <textarea
+              value={newExam.description}
+              onChange={(e) =>
+                setNewExam({ ...newExam, description: e.target.value })
+              }
+              placeholder="توضیح مختصری درباره آزمون..."
+              rows="3"
+            />
+          </div>
+
+          <div className="form-row">
             <div className="form-group">
-              <label>عنوان آزمون *</label>
+              <label>رشته</label>
               <input
                 type="text"
-                value={newExam.title}
+                value={newExam.field}
                 onChange={(e) =>
-                  setNewExam({ ...newExam, title: e.target.value })
+                  setNewExam({ ...newExam, field: e.target.value })
                 }
-                placeholder="مثال: آزمون جامع مهندسی کامپیوتر"
               />
             </div>
 
             <div className="form-group">
-              <label>توضیحات</label>
-              <textarea
-                value={newExam.description}
+              <label>مدت زمان (دقیقه)</label>
+              <input
+                type="number"
+                value={newExam.duration_minutes}
                 onChange={(e) =>
-                  setNewExam({ ...newExam, description: e.target.value })
+                  setNewExam({
+                    ...newExam,
+                    duration_minutes: parseInt(e.target.value),
+                  })
                 }
-                placeholder="توضیحات درباره آزمون..."
-                rows="3"
+                min="1"
               />
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label>رشته</label>
-                <select
-                  value={newExam.field}
-                  onChange={(e) =>
-                    setNewExam({ ...newExam, field: e.target.value })
-                  }
-                >
-                  <option value="computer">مهندسی کامپیوتر</option>
-                  <option value="electric">مهندسی برق</option>
-                  <option value="civil">مهندسی عمران</option>
-                  <option value="math">ریاضی</option>
-                  <option value="physics">فیزیک</option>
-                  <option value="chemistry">شیمی</option>
-                  <option value="general">عمومی</option>
-                </select>
+            <div className="form-group">
+              <label>سطح مورد نیاز</label>
+              <input
+                type="number"
+                value={newExam.required_level}
+                onChange={(e) =>
+                  setNewExam({
+                    ...newExam,
+                    required_level: parseInt(e.target.value),
+                  })
+                }
+                min="1"
+              />
+            </div>
+          </div>
+
+          <h3>سوالات ({newExam.questions.length})</h3>
+
+          {newExam.questions.map((question, index) => (
+            <div key={index} className="question-card">
+              <div className="question-header">
+                <h4>سوال {index + 1}</h4>
+                {newExam.questions.length > 1 && (
+                  <button
+                    onClick={() => removeQuestion(index)}
+                    className="btn btn-danger btn-sm"
+                    type="button"
+                  >
+                    حذف
+                  </button>
+                )}
               </div>
 
               <div className="form-group">
-                <label>مدت زمان (دقیقه)</label>
-                <input
-                  type="number"
-                  value={newExam.duration_minutes}
+                <label>متن سوال *</label>
+                <textarea
+                  value={question.text}
                   onChange={(e) =>
-                    setNewExam({
-                      ...newExam,
-                      duration_minutes: parseInt(e.target.value),
-                    })
+                    handleQuestionChange(index, "text", e.target.value)
                   }
-                  min="1"
+                  placeholder="متن سوال را وارد کنید..."
+                  rows="3"
                 />
               </div>
 
+              <div className="options-grid">
+                {["A", "B", "C", "D"].map((option) => (
+                  <div key={option} className="option-group">
+                    <label>گزینه {option} *</label>
+                    <input
+                      type="text"
+                      value={question[`option_${option.toLowerCase()}`]}
+                      onChange={(e) =>
+                        handleQuestionChange(
+                          index,
+                          `option_${option.toLowerCase()}`,
+                          e.target.value
+                        )
+                      }
+                      placeholder={`گزینه ${option}`}
+                    />
+                  </div>
+                ))}
+              </div>
+
               <div className="form-group">
-                <label>سطح مورد نیاز</label>
+                <label>پاسخ صحیح</label>
                 <select
-                  value={newExam.required_level}
+                  value={question.correct_answer}
                   onChange={(e) =>
-                    setNewExam({ ...newExam, required_level: e.target.value })
+                    handleQuestionChange(
+                      index,
+                      "correct_answer",
+                      e.target.value
+                    )
                   }
                 >
-                  <option value="beginner">مبتدی</option>
-                  <option value="intermediate">متوسط</option>
-                  <option value="advanced">پیشرفته</option>
+                  <option value="A">گزینه A</option>
+                  <option value="B">گزینه B</option>
+                  <option value="C">گزینه C</option>
+                  <option value="D">گزینه D</option>
                 </select>
               </div>
             </div>
+          ))}
 
-            <h3>سوالات آزمون ({questions.length} سوال)</h3>
+          <div className="form-actions">
+            <button
+              onClick={addQuestion}
+              className="btn btn-secondary"
+              type="button"
+            >
+              + افزودن سوال
+            </button>
 
-            {questions.map((question, index) => (
-              <div key={index} className="question-card">
-                <div className="question-header">
-                  <h4>سوال {index + 1}</h4>
-                  {questions.length > 1 && (
-                    <button
-                      onClick={() => removeQuestion(index)}
-                      className="btn btn-danger btn-sm"
-                      type="button"
-                    >
-                      حذف سوال
-                    </button>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label>متن سوال *</label>
-                  <textarea
-                    value={question.text}
-                    onChange={(e) =>
-                      handleQuestionChange(index, "text", e.target.value)
-                    }
-                    placeholder="متن سوال را اینجا بنویسید..."
-                    rows="3"
-                  />
-                </div>
-
-                <div className="options-grid">
-                  {["A", "B", "C", "D"].map((option) => (
-                    <div key={option} className="option-group">
-                      <label>گزینه {option} *</label>
-                      <input
-                        type="text"
-                        value={question[`option_${option.toLowerCase()}`]}
-                        onChange={(e) =>
-                          handleQuestionChange(
-                            index,
-                            `option_${option.toLowerCase()}`,
-                            e.target.value
-                          )
-                        }
-                        placeholder={`متن گزینه ${option}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <div className="form-group">
-                  <label>پاسخ صحیح</label>
-                  <select
-                    value={question.correct_answer}
-                    onChange={(e) =>
-                      handleQuestionChange(
-                        index,
-                        "correct_answer",
-                        e.target.value
-                      )
-                    }
-                  >
-                    <option value="A">گزینه A</option>
-                    <option value="B">گزینه B</option>
-                    <option value="C">گزینه C</option>
-                    <option value="D">گزینه D</option>
-                  </select>
-                </div>
-              </div>
-            ))}
-
-            <div className="form-actions">
-              <button
-                onClick={addQuestion}
-                className="btn btn-secondary"
-                type="button"
-              >
-                + افزودن سوال جدید
-              </button>
-
-              <button
-                onClick={handleCreateExam}
-                className="btn btn-primary"
-                disabled={!newExam.title.trim()}
-                type="button"
-              >
-                ایجاد آزمون
-              </button>
-            </div>
+            <button
+              onClick={handleCreateExam}
+              className="btn btn-primary"
+              disabled={!newExam.title.trim()}
+              type="button"
+            >
+              ایجاد آزمون
+            </button>
           </div>
-        )}
+        </div>
+      )}
 
-      {/* لیست آزمون‌ها */}
       <div className="exams-grid">
         {exams.length === 0 ? (
           <div className="no-exams">
-            <p>هیچ آزمونی یافت نشد</p>
-            {isTeacher &&
-              !showCreateForm && ( // تغییر به isTeacher
-                <p>می‌توانید اولین آزمون را ایجاد کنید!</p>
-              )}
+            <p>هیچ آزمونی یافت نشد.</p>
+            {user?.user_type === "teacher" && !showCreateForm && (
+              <p>شما می‌توانید اولین آزمون را ایجاد کنید!</p>
+            )}
           </div>
         ) : (
           exams.map((exam) => (
@@ -346,12 +324,9 @@ const Exams = () => {
                 {exam.required_level && (
                   <span>سطح مورد نیاز: {exam.required_level}</span>
                 )}
-                {isTeacher && ( // تغییر به isTeacher - نمایش سازنده آزمون
-                  <span>سازنده: {exam.creator?.username || "سیستم"}</span>
-                )}
               </div>
               <Link to={`/exams/${exam.id}`} className="btn btn-primary">
-                {isStudent ? "شرکت در آزمون" : "مشاهده آزمون"}
+                {user?.user_type === "student" ? "شرکت در آزمون" : "مشاهده آزمون"}
               </Link>
             </div>
           ))

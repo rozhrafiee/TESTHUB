@@ -9,7 +9,7 @@ from .serializers import (
     ExamSerializer, ExamDetailSerializer, ExamAttemptSerializer,
     ExamAttemptDetailSerializer, AnswerSerializer, QuestionWithAnswerSerializer
 )
-from accounts.permissions import IsStudent, IsAdmin, IsStudentOrAdmin
+from accounts.permissions import IsStudent, IsAdmin, IsStudentOrAdmin, IsTeacher
 
 def get_student_level(user):
     """Calculate student level based on exam attempts and scores"""
@@ -29,6 +29,17 @@ def get_student_level(user):
     bonus = int(avg_score // 20)  # Bonus level from high scores
     
     return min(base_level + bonus, 10)
+
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsTeacher])
+def create_exam(request):
+    """Create a new exam with questions"""
+    serializer = ExamDetailSerializer(data=request.data)
+    if serializer.is_valid():
+        exam = serializer.save()
+        return Response(ExamDetailSerializer(exam).data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def list_exams(request):

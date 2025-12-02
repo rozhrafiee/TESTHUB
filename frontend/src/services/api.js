@@ -64,14 +64,10 @@ export const examsAPI = {
   getMyAttempts: () => api.get("/exams/my-attempts/"),
   getMyLevel: () => api.get("/exams/my-level/"),
   getAttemptDetail: (attemptId) => api.get(`/exams/attempts/${attemptId}/`),
-  // ایجاد آزمون - اگر endpoint جداگانه داره
   createExam: (examData) => api.post("/exams/create/", examData),
-
-  // یا اگر باید از همین exams/ با POST استفاده کرد
-  createExam: (examData) => api.post("/exams/", examData),
   createQuestion: (examId, data) =>
     api.post(`/exams/${examId}/questions/`, data),
-  getMyExams: () => api.get("/my-exams/"), // برای دیدن آزمون‌های ساخته شده
+  getMyExams: () => api.get("/my-exams/"),
 };
 
 // Consultations API

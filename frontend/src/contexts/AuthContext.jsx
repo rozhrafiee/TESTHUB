@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return {
         success: false,
-        error: error.response?.data?.error || error.response?.data?.detail || 'Login failed',
+        error: error.response?.data?.error || error.response?.data?.detail || 'ورود ناموفق بود',
       }
     }
   }
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
         statusText: error.response?.statusText,
       })
       
-      let errorMessage = 'Registration failed'
+      let errorMessage = 'ثبت نام ناموفق بود'
       if (error.response?.data) {
         const errorData = error.response.data
         
@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }) => {
               return `${key}: ${value}`
             })
             .join('\n')
-          errorMessage = errors || 'Validation error'
+          errorMessage = errors || 'خطای اعتبارسنجی'
         } else if (typeof errorData === 'string') {
           errorMessage = errorData
         }
@@ -138,4 +138,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
-
