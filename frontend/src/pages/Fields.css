@@ -1,209 +1,262 @@
 .fields-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #F4F6FF; 
+  padding: 30px 20px;
+  background-color: transparent;
 }
 
+/* Header */
 .fields-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .fields-header h1 {
-  font-size: 2rem;
-  color: #1A1B2E; 
+  font-size: 2.2rem;
+  color: #5b6cff;
   margin-bottom: 10px;
+  font-weight: 800;
 }
 
 .fields-header p {
-  color: #5A5C6E; 
+  color: #6b7280;
+  font-size: 1rem;
 }
 
+/* Grid */
 .fields-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 24px;
 }
 
+/* Card */
 .field-card {
-  background: white;
-  border-radius: 10px;
-  padding: 25px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 24px;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border: 1px solid #E5E7F1; 
-  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(91,108,255,0.15);
+  border: 1px solid rgba(91,108,255,0.15);
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .field-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  border-color: #5B6CFF;
+  transform: translateY(-6px);
+  box-shadow: 0 14px 34px rgba(91,108,255,0.25);
 }
 
+/* Icon */
 .field-icon {
-  font-size: 3rem;
-  margin-bottom: 15px;
-  color: #5B6CFF;
+  font-size: 3.4rem;
+  margin-bottom: 16px;
+  color: #5b6cff;
 }
 
+/* Title */
 .field-card h3 {
-  font-size: 1.3rem;
-  color: #1A1B2E;
+  font-size: 1.4rem;
+  color: #2c3e50;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
+/* Description */
 .field-card p {
-  color: #5A5C6E; 
-  line-height: 1.5;
-  margin-bottom: 20px;
+  color: #6b7280;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  font-size: 0.95rem;
 }
 
+/* Button */
 .field-btn {
-  background: #5B6CFF; 
-  color: white;
+  background: linear-gradient(135deg, #5b6cff, #764ba2);
+  color: #ffffff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 10px 26px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 14px;
-  transition: background 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(91,108,255,0.35);
 }
 
 .field-btn:hover {
-  background: #7A5CFF; 
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(91,108,255,0.45);
 }
+
+/* ================= Modal ================= */
 
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(15,18,36,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 2000;
   padding: 20px;
 }
 
 .modal-content {
-  background: white;
-  border-radius: 15px;
-  padding: 0;
-  max-width: 500px;
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 520px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 }
 
+/* Modal Header */
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #E5E7F1;
+  padding: 22px;
+  border-bottom: 1px solid rgba(91,108,255,0.2);
 }
 
 .modal-header h2 {
   margin: 0;
-  color: #1A1B2E;
+  font-size: 1.4rem;
+  color: #5b6cff;
+  font-weight: 700;
 }
 
 .close-btn {
-  background: none;
+  background: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
-  color: #5A5C6E; 
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #6b7280;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
 }
 
 .close-btn:hover {
-  color: #1A1B2E; 
+  background: rgba(91,108,255,0.15);
+  color: #5b6cff;
 }
 
+/* Modal Body */
 .modal-body {
-  padding: 20px;
+  padding: 24px;
 }
 
 .modal-icon {
-  font-size: 4rem;
+  font-size: 4.2rem;
   text-align: center;
   margin-bottom: 20px;
-  color: #5B6CFF; 
+  color: #5b6cff;
 }
 
 .modal-body p {
-  color: #5A5C6E; 
-  line-height: 1.6;
+  color: #6b7280;
+  line-height: 1.7;
   margin-bottom: 20px;
 }
 
+/* Info */
 .modal-info {
-  background: #F4F6FF; 
-  border-radius: 8px;
-  margin-top: 20px;
-  border: 1px solid #E5E7F1;
+  background: #f4f6ff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(91,108,255,0.2);
 }
 
 .info-item {
-  margin-bottom: 8px;
-  color: #1A1B2E;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 0.95rem;
 }
 
 .info-item:last-child {
   margin-bottom: 0;
 }
 
+/* Footer */
 .modal-footer {
   padding: 20px;
-  border-top: 1px solid #E5E7F1;
+  border-top: 1px solid rgba(91,108,255,0.2);
   text-align: center;
 }
 
+/* Primary Button */
 .btn-primary {
-  background: #5B6CFF;
-  color: white;
+  background: linear-gradient(135deg, #5b6cff, #764ba2);
+  color: #ffffff;
   border: none;
-  padding: 12px 30px;
-  border-radius: 5px;
+  padding: 12px 32px;
+  border-radius: 14px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(91,108,255,0.35);
 }
 
 .btn-primary:hover {
-  background: #7A5CFF; 
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(91,108,255,0.45);
 }
 
+/* Loading */
 .loading {
   text-align: center;
-  padding: 50px;
-  font-size: 1.2rem;
-  color: #5A5C6E;
+  padding: 60px;
+  font-size: 1.1rem;
+  color: #6b7280;
 }
 
+/* ================= Dark Mode ================= */
+
+body.dark .field-card {
+  background: #1a1d3a;
+  border-color: rgba(130,140,255,0.25);
+}
+
+body.dark .field-card h3 {
+  color: #e0e4ff;
+}
+
+body.dark .field-card p {
+  color: #c9ccff;
+}
+
+body.dark .modal-content {
+  background: #151933;
+}
+
+body.dark .modal-header h2 {
+  color: #c7d2fe;
+}
+
+body.dark .modal-body p {
+  color: #c9ccff;
+}
+
+body.dark .modal-info {
+  background: #1a1d3a;
+}
+
+/* ================= Mobile ================= */
+
 @media (max-width: 768px) {
-  .fields-grid {
-    grid-template-columns: 1fr;
+  .fields-header h1 {
+    font-size: 1.7rem;
   }
 
   .field-card {
-    padding: 20px;
+    padding: 22px;
   }
 
   .modal-content {
-    margin: 10px;
     max-height: 95vh;
   }
 }

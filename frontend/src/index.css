@@ -172,3 +172,398 @@ a:hover {
   color: #3b427f;
   text-decoration: underline;
 }
+body.dark {
+  background-color: #0f1225;
+  color: #e5e7eb;
+}
+
+/* متن‌ها */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark p,
+body.dark span,
+body.dark div,
+body.dark li,
+body.dark td,
+body.dark th,
+body.dark label {
+  color: #e5e7eb;
+}
+
+/* کارت‌ها */
+body.dark .card {
+  background-color: #151933;
+  border-color: #2a2f5f;
+  color: #e5e7eb;
+}
+
+/* فرم‌ها */
+body.dark .form-group input,
+body.dark .form-group textarea,
+body.dark .form-group select {
+  background-color: #151933;
+  border-color: #2a2f5f;
+  color: #e5e7eb;
+}
+
+body.dark .form-group input::placeholder,
+body.dark .form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+body.dark .form-group input:focus,
+body.dark .form-group textarea:focus,
+body.dark .form-group select:focus {
+  background-color: #1b2045;
+  border-color: #7A5CFF;
+  box-shadow: 0 0 0 3px rgba(122,92,255,0.25);
+}
+
+/* دکمه‌ها */
+body.dark .btn-primary {
+  background-color: #5B6CFF;
+}
+
+body.dark .btn-secondary {
+  background-color: #3b3f8f;
+}
+
+body.dark .btn-success {
+  background-color: #34b77a;
+}
+
+body.dark .btn-danger {
+  background-color: #e74c5b;
+}
+
+/* لینک‌ها */
+body.dark a {
+  color: #8fa2ff;
+}
+
+body.dark a:hover {
+  color: #b4c1ff;
+}
+
+body.dark code {
+  background-color: #1b2045;
+  color: #cbd5f5;
+}
+body.dark {
+  color: #333;
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark p,
+body.dark span,
+body.dark div,
+body.dark li,
+body.dark td,
+body.dark th,
+body.dark label {
+  color: #333 !important;
+}
+:root {
+  --navbar-height-desktop: 76px;
+  --navbar-height-mobile: 64px;
+}
+
+/* اطمینان سراسری */
+body {
+  padding-top: var(--navbar-height-desktop);
+}
+
+/* هر صفحه‌ای که داخل main / section / div رندر شده */
+main,
+section,
+.page,
+.page-content,
+.content,
+.container,
+.app-content,
+#root > div {
+  padding-top: 24px;
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+  body {
+    padding-top: var(--navbar-height-mobile);
+  }
+
+  main,
+  section,
+  .page,
+  .page-content,
+  .content,
+  .container,
+  .app-content,
+  #root > div {
+    padding-top: 20px;
+  }
+}
+/* ===== Responsive Global Fix ===== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* کانتینر استاندارد */
+.container,
+.container-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+/* جلوگیری از رفتن محتوا زیر هدر */
+:root {
+  --navbar-height-desktop: 76px;
+  --navbar-height-mobile: 64px;
+}
+
+body {
+  padding-top: var(--navbar-height-desktop);
+}
+
+/* تمام wrapperهای رایج */
+main,
+section,
+.page,
+.page-content,
+.content,
+.app-content,
+#root > div {
+  padding-top: 24px;
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+  body {
+    padding-top: var(--navbar-height-mobile);
+  }
+
+  main,
+  section,
+  .page,
+  .page-content,
+  .content,
+  .app-content,
+  #root > div {
+    padding-top: 20px;
+  }
+}
+
+/* Grid ریسپانسیو پیش‌فرض */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Flex ریسپانسیو پیش‌فرض */
+.responsive-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+:root {
+  --primary: #5b6cff;
+  --primary-soft: #e9ecff;
+  --secondary: #764ba2;
+
+  --bg-page: #f3f4f8;
+  --bg-card: #ffffff;
+
+  --text-main: #2c3e50;
+  --text-muted: #6b7280;
+
+  --radius-lg: 18px;
+  --radius-md: 12px;
+
+  --shadow-soft: 0 8px 24px rgba(91,108,255,0.15);
+  --shadow-hover: 0 14px 34px rgba(91,108,255,0.25);
+}
+
+/* ================= Cards ================= */
+
+.card,
+.card-box,
+.note-card,
+.video-card,
+.exam-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(91,108,255,0.15);
+}
+
+.card:hover,
+.card-box:hover,
+.note-card:hover,
+.video-card:hover,
+.exam-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card h3,
+.card-box h3,
+.note-card h3,
+.video-card h3,
+.exam-card h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.card p,
+.card-box p,
+.note-card p,
+.video-card p,
+.exam-card p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ================= Buttons ================= */
+
+button,
+.btn {
+  border-radius: var(--radius-md);
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Primary */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(91,108,255,0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(91,108,255,0.45);
+}
+
+/* Secondary */
+.btn-secondary {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.btn-secondary:hover {
+  background: #dfe3ff;
+}
+
+/* Outline */
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ================= Badges ================= */
+
+.badge,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 13px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: #e6f7ee;
+  color: #16a34a;
+}
+
+/* ================= Dark Mode ================= */
+
+body.dark {
+  background: #0f1224;
+}
+
+body.dark .card,
+body.dark .card-box,
+body.dark .note-card,
+body.dark .video-card,
+body.dark .exam-card {
+  background: #1a1d3a;
+  border-color: rgba(130,140,255,0.25);
+}
+
+body.dark .card p,
+body.dark .note-card p,
+body.dark .video-card p {
+  color: #c9ccff;
+}
+
+body.dark .btn-secondary {
+  background: #2a2f5f;
+  color: #c9ccff;
+}
+/* ===== Purple Top Line for Cards ===== */
+
+.card,
+.note-card,
+.video-card,
+.exam-card,
+.field-card,
+.auth-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before,
+.note-card::before,
+.video-card::before,
+.exam-card::before,
+.field-card::before,
+.auth-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #5b6cff, #764ba2);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
